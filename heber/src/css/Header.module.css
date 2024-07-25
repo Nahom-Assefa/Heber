@@ -126,6 +126,7 @@ a:hover {
 
 .afroCover {
   width: 100%; /* Makes sure the image takes the full width of its container */
+  height: 3%;
   object-fit: cover; /* Ensures the image covers the entire container without distortion */
   position: absolute; /* Ensures the image is positioned absolutely within the header */
 }

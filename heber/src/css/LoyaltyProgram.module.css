@@ -1,0 +1,25 @@
+.titleDescription {
+  text-align: center;
+}
+
+.title {
+  font-size: 3vw;
+  font-weight: 700;
+}
+
+.vNameButton {
+  padding: 10px 15px;
+  background-color: #006400;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer; 
+}
+
+.africanCover {
+  width: 100%; /* Makes sure the image takes the full width of its container */
+  height: 3%;
+  object-fit: cover; /* Ensures the image covers the entire container without distortion */
+  position: absolute; /* Ensures the image is positioned absolutely within the header */
+}
+

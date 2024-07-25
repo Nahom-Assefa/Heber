@@ -15,10 +15,7 @@ function Header() {
     useEffect(() => {
       async function fetchData() {
         try {
-          // const bannerData = await client.fetch(bannerQuery);
-          // const logoData = await client.fetch(logoQuery);
           const headerComponentData = await client.fetch(all);
-          console.log(all);
 
           headerComponentData.forEach(function(a_item) {
             switch(a_item.title) {
@@ -31,7 +28,9 @@ function Header() {
               case "View Menu Icon": setMenuIcon(urlFor(a_item.image).sharpen().url())
                 break;
               case "View Market Icon": setMarketIcon(urlFor(a_item.image).sharpen().url())
-              break;
+                break;
+              default:
+                break;
             }
           })
         } catch (error) {
@@ -52,8 +51,7 @@ function Header() {
     }}>
       <nav>
         <ul className={`${hCSS.rip} ${hCSS.lee}`}>
-          {/* Use Link component for navigation */}
-          <li><img src={`${heberLogo}`} alt="Example Image"/></li>
+          <li><img src={`${heberLogo}`} alt=""/></li>
           <li className={hCSS.lineItem}><Link className={hCSS.anchor} to="/">Home</Link></li>
           <li className={hCSS.lineItem}><Link className={hCSS.anchor} to="/market">Market</Link></li>
           <li className={hCSS.lineItem}><Link className={hCSS.anchor} to="/about">About</Link></li>
@@ -65,7 +63,6 @@ function Header() {
         </ul>
       </nav>
       <div>
-        {/* <h1 className={hCSS.pageTitle}>Where{''} <span className={hCSS.bold}>Community</span> meets{''} <span className={hCSS.bold}>Culture</span></h1> */}
         <h1 className={hCSS.pageTitle}> <span className={hCSS.nBold}>Where</span> <span className={hCSS.bold}>Community</span> <br/>
         <span className={hCSS.nBold}>Meets</span> <span className={hCSS.bold}>Culture</span></h1><br/>
         <p className={hCSS.pTitle}>Experience the vibrant fusion of Ethiopian heritage <br/> 

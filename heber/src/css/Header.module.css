@@ -7,14 +7,18 @@
   align-items: center; /* Horizontally center content */
 }
 
+@media screen and ( max-width: 800px ) {
+  .nav-header { 
+    width: 20vmin;
+  }
+  .lineItem {
+    width: 100%;
+  }
+}
+
 .navLinks {
   width: auto;
 }
-
-
-/* .lee {
-  background-color: blueviolet;
-} */
 
 .lineItem {
   padding-inline: 45px;

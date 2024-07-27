@@ -11,7 +11,9 @@ import Footer from '../components/footer'
 const HomePage = () => {
   return (
     <section className={oCSS.offer}>
-      <Header />
+      <Header 
+        page='home'
+      />
       <Offer />
       <Menu />
       <About />

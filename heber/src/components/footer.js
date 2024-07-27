@@ -1,6 +1,5 @@
 import React from 'react';
-import { FaSquareInstagram, FaRegClock } from "react-icons/fa6";
-import { AiFillTikTok } from "react-icons/ai";
+import { FaSquareInstagram, FaRegClock, FaTiktok, FaLocationDot } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 import { Link } from 'react-router-dom';
@@ -24,16 +23,19 @@ function footer () {
         </div>
         <div className={footerCSS.gridItem}>
           <h1 className={footerCSS.textColor}>Location And Working Hours</h1>
-          <div style={{display: 'flex', justifyContent: 'left', marginBottom: '10px'}}>
-            <CiLocationOn style={{color: '#DAA520', fontSize: '3vw'}} />
+          <div style={{display: 'flex', justifyContent: 'left', marginBottom: '10px', color: 'white', textAlign: 'left'}}>
+            <FaLocationDot style={{color: '#DAA520', fontSize: '26px', marginRight: '15px'}} />
+            3515 S Jefferson St, Falls Church, VA 22041
           </div>
-          <div style={{display: 'flex', justifyContent: 'left'}}>
-            <FaRegClock style={{color: '#DAA520', fontSize: '2.3vw'}} />
+          <div style={{display: 'flex', justifyContent: 'left', color: 'white', textAlign: "left"}}>
+            <FaRegClock style={{color: '#DAA520', fontSize: '24px', marginRight: '10px'}} />
+            Hours Open: <br/> 
+            Mon-Sun 09:00AM - 10:00PM
           </div>
-          <div id='socialIcons'>
-            <AiFillTikTok style={{color: '#DAA520', fontSize: '3.3vw'}} />
-            <FaSquareInstagram style={{color: '#DAA520', fontSize: '3vw'}} />
-            <FaFacebookSquare style={{color: '#DAA520', fontSize: '3vw'}}  />
+          <div className={footerCSS.socialIcons}>
+            <FaTiktok style={{color: '#DAA520'}} />
+            <FaSquareInstagram style={{color: '#DAA520'}} />
+            <FaFacebookSquare style={{color: '#DAA520'}}  />
           </div>
         </div>
       </div>

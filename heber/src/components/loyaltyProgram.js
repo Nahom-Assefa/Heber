@@ -61,7 +61,7 @@ function Loyalty() {
       }
     }
     fetchData();
-  }, []);
+  }, [africanPrint, coffeeBean]);
 
   return (
     <>

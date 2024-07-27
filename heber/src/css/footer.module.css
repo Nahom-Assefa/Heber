@@ -18,3 +18,13 @@
 .textColor {
   color: white;
 }
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+
+.socialIcons > * {
+  font-size: 24px;
+}

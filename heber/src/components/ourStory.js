@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 
-function MarketMap() {
+function OurStory() {
   const handleButtonClick = () => {
     const placeName = 'Heber Market & Cafe, Falls Church, VA';
     const encodedAddress = encodeURIComponent(placeName);
@@ -55,4 +55,4 @@ function MarketMap() {
   );
 }
 
-export default MarketMap;
+export default OurStory;

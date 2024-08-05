@@ -1,148 +1,101 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Grid, Paper, Typography, Box, Tab, Tabs } from '@mui/material';
-import client from '../api/sanityClient';
-import { urlFor } from '../utils/imageURL';
-import menuCSS from '../css/Menu.module.css';
+import React, { useState } from 'react';
+import { Container, Box, Tab, Tabs, Typography, List, ListItem, ListItemText, useMediaQuery, useTheme } from '@mui/material';
+import commonCSS from '../css/Common.module.css';
 
-const TabPanel = (props) => {
-  const { value, index, list1, list2, ...other } = props;
-
+const TabPanel = ({ value, list1, list2, ...other }) => {
   return (
-    <div style={{ marginBottom: "20px" }} {...other}>
-      <div className={`lefther tab-menu-list ${value === index ? 'active' : ''}`}>
+    <Box
+      sx={{
+        display: { xs: 'block', sm: 'flex' }, // Stack vertically on small screens, side by side on larger screens
+        flexDirection: { xs: 'column', sm: 'row' },
+        justifyContent: 'center',
+        width: '100%',
+        marginBottom: 2,
+      }}
+      {...other}
+    >
+      <Box
+        sx={{
+          flex: 1,
+          opacity: value === 0 ? 1 : 0.5,
+          transition: 'opacity 0.3s',
+          marginBottom: { xs: 2, sm: 0 }, // Margin adjustment for stacking
+        }}
+      >
         {list1}
-      </div>
-      <div className={`tab-menu-list ${value !== index ? 'active' : ''}`}>
+      </Box>
+      <Box
+        sx={{
+          flex: 1,
+          opacity: value === 1 ? 1 : 0.5,
+          transition: 'opacity 0.3s',
+          marginBottom: { xs: 2, sm: 0 }, // Margin adjustment for stacking
+        }}
+      >
         {list2}
-      </div>
-      <style>{`
-        .tab-menu-list {
-          opacity: 0.5;
-          transition: opacity 0.3s;
-          display: inline-block;
-        }
-
-        .lefther {
-          margin-right: 80px;
-        }
-
-        .tab-menu-list.active {
-          opacity: 1;
-
-        }
-      `}</style>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
 const Menu = () => {
   const [value, setValue] = useState(0);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <>
-    <div className={menuCSS.bckgrndSize}>
-      <h1 className={menuCSS.title}> Menu </h1>
-      <p className={menuCSS.para}> Discover our exceptional coffee and bakery creations</p>
+    <Box sx={{height: {md: "auto", lg: "500px"}}}>
+      <Typography variant="h1" className={commonCSS.title}>
+        Menu
+      </Typography>
+      <Typography variant="body1" className={commonCSS.para}>
+        A list of our specialty restaurant and market options 🚀 <br/>
+        Discover more when you stop by on-site!
+      </Typography>
       <Container sx={{ paddingTop: '10px', textAlign: 'center' }}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Coffee" />
-            <Tab label="Market" />
-          </Tabs>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' }, // Stack vertically on small screens, side by side on larger screens
+            justifyContent: 'center',
+            marginBottom: '20px',
+          }}
+        >
+          <Box sx={{ width: { xs: '100%', sm: 'auto' } }}>
+            <Tabs value={value} className={commonCSS.tabs} onChange={handleChange} aria-label="menu tabs" orientation={isSmallScreen ? 'vertical' : 'horizontal'}>
+              <Tab label="Specialty Restaurant Items"/>
+              <Tab label="Specialty Market Items"/>
+            </Tabs>
+          </Box>
         </Box>
-        <TabPanel 
-          value={value} 
-          index={0} 
+        <TabPanel
+          value={value}
           list1={
-            <ul className='coffeeList'>
-              <li className='coffeeItem'>Item 1</li>
-              <li className='coffeeItem'>Item 2</li>
-              <li className='coffeeItem'>Item 3</li>
-            </ul>
+            <List className={commonCSS.restaurantPadding} sx={{color: "#006400" }}>
+              {['Kitfo Sandwhich', 'Tibs Sandwhich', 'Heber Keremela Kurt', 'Gored Gored', 'Chicken Tibs'].map((item, index) => (
+                <ListItem key={index} className="coffeeItem">
+                  <ListItemText primary={item} />
+                </ListItem>
+              ))}
+            </List>
           }
           list2={
-            <ol className='marketList'>
-              <li className='marketItem'>Item A</li>
-              <li className='marketItem'>Item B</li>
-              <li className='marketItem'>Item C</li>
-            </ol>
-          } 
+            <List className={commonCSS.marketPadding} sx={{color: "#DAA520" }}>
+              {['Injera', 'Halal meat', 'Ambasha', 'Ethiopian Spices', 'Raw Ethiopian Coffee'].map((item, index) => (
+                <ListItem key={index} className="marketItem">
+                  <ListItemText primary={item} />
+                </ListItem>
+              ))}
+            </List>
+          }
         />
-        <style>{`
-          .coffeeList, .marketList {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-          }
-  
-          .coffeeItem, .marketItem {
-            margin-bottom: 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-          }
-  
-          .coffeeList li {
-            padding-right: 20px; /* Adjust as needed */
-          }
-          
-  
-  
-  
-          .marketList, .coffeeList {
-            background-color: #e0e0e0; /* Slightly lighter gray background */
-          }
-        `}</style>
       </Container>
-      <div className={menuCSS.pdfBtnContainer}>
-        <button className={menuCSS.pdfBtn}>View Full PDF menu</button>
-      </div>
-    </div>
-    </>
+    </Box>
   );
-
-    // <>
-    // <div style={{
-    //               backgroundColor: 'white',
-    //               backgroundSize: '100% auto',
-    //               backgroundRepeat: 'no-repeat',
-    //               backgroundPosition: 'center center',
-    //               height: '500px',
-    //               paddingTop: '60px'
-    //             }}>
-    //   <div>
-    //     
-    //     <p className={menuCSS.p}> Discover our Exceptional Coffee and Bakery Creations.</p>
-    //     <div>
-    //       <div>
-    //         <img src={pastries} alt='' />
-    //         <h3>Artisan Pastires</h3>
-    //         <p> Indulge in our selection of <br/> 
-    //             fresh pastries and bakery delights</p>
-    //       </div>
-    //       <div>
-    //         <img src={cBeans} alt='' />
-    //         <h3>High Quality Coffee</h3>
-    //         <p>Savor the rich flavors of <br/>
-    //             Ethiopian Coffee brewed to perfection</p>
-    //       </div>
-    //       <div>
-    //         <img src={hospitality} alt='' />
-    //         <h3>Warm Hospitality</h3>
-    //         <p>Experience genuine hospitality <br/>
-    //             from our friendly staff in a <br/>
-    //             welcoming atmosphere</p>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   {/* <div><img src={`${afroDivPrint}`} alt="Example Image" className={hCSS.afroCover}/></div> */}
-    // </div>
-    // </>
-  };
+};
 
 export default Menu;

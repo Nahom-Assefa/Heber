@@ -1,0 +1,185 @@
+:root {
+  --restaurant-padding: calc(20vw + 40px); /* Adjust base value and scaling factor as needed */
+  --market-padding: calc(20vw + 40px);
+}
+
+.title {
+  text-align: center !important;
+  /* margin-bottom: 10px; */
+  font-size: clamp(1.5rem, 4vw, 3rem) !important;
+}
+
+.headerText {
+  color: 'white' !important;
+  font-Size:'2em';
+  margin-bottom: 2;
+}
+
+.pdfBtnContainer {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.primaryBtn {
+  padding: 10px 15px;
+  background-color: #006400;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer; 
+}
+
+.primaryBtn:hover {
+  background-color: #00A000;
+}
+
+.secondaryBtn{
+  padding: 10px 15px;
+  background-color: #DAA520;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  background-color: #FFC000;
+}
+
+.contactBtn {
+  padding: 10px 15px;
+  background-color: transparent;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer; 
+}
+
+.contactBtn:hover {
+  background-color: #00A000;
+}
+
+/* Media query for large screens (min-width: 1200px) */
+@media (min-width: 1400px) {
+  .secondaryBtn, .primaryBtn {
+    padding: 12px 18px;
+    font-size: 1rem; /* Adjust as needed */
+  }
+}
+
+/* Media query for medium screens (min-width: 992px and max-width: 1199px) */
+@media (min-width: 900px) and (max-width: 1400px) {
+  .secondaryBtn, .primaryBtn {
+    padding: 10px 15px;
+    font-size: 0.65rem; /* Adjust as needed */
+  }
+}
+
+/* Media query for small screens (min-width: 768px and max-width: 991px) */
+@media (min-width: 600px) and (max-width: 900px) {
+  .secondaryBtn, .primaryBtn {
+    padding: 4px 6px;
+    font-size: 0.65rem; /* Adjust as needed */
+  }
+}
+
+/* Media query for extra small screens (max-width: 767px) */
+@media (min-width: 480px) and (max-width: 599px) {
+  .secondaryBtn, .primaryBtn {
+    padding: 2px 6px;
+    font-size: 0.45rem; /* Adjust as needed */
+  }
+}
+
+@media (max-width: 479px) {
+  .secondaryBtn, .primaryBtn {
+    padding: 1px 3px;
+    font-size: 0.35rem; /* Adjust as needed */
+  }
+}
+
+/* Media query for medium screens (min-width: 992px and max-width: 1199px) */
+@media (min-width: 900px) and (max-width: 1400px) {
+  .contactBtn {
+    padding: 10px 15px;
+    font-size: 0.35rem; /* Adjust as needed */
+  }
+}
+
+/* Media query for small screens (min-width: 768px and max-width: 991px) */
+@media (min-width: 600px) and (max-width: 900px) {
+  .contactBtn {
+    padding: 4px 8px;
+    font-size: 0.35rem; /* Adjust as needed */
+  }
+}
+
+/* Media query for extra large screens (max-width: 767px) */
+@media (min-width: 1400px) {
+  .contactBtn {
+    padding: 8px 20px;
+    font-size: 1rem; /* Adjust as needed */
+  }
+}
+
+/* Media query for extra small screens (max-width: 767px) */
+@media (max-width: 599px) {
+  .contactBtn {
+    margin-bottom: 6px;
+    padding: 3px 5px;
+    font-size: 0.25rem; /* Adjust as needed */
+  }
+}
+
+.para {
+  text-align: center;
+}
+
+.restaurantPadding li {
+  padding-left: var(--restaurant-padding);
+}
+
+/* Media query for viewport widths between 400px and 600px */
+@media (min-width: 900px) and (max-width: 12000px) {
+  .restaurantPadding li {
+    padding-left: 26vw; /* Increased padding for the specified viewport range */
+  }
+}
+
+.tabs {
+  padding-right: 20px; /* Default padding */
+}
+
+.marketPadding li {
+  padding-left: var(--market-padding);
+}
+
+/* Media query for viewport widths between 400px and 600px */
+@media (min-width: 620px) and (max-width: 12000px) {
+  .marketPadding li {
+    padding-left: 5vw; /* Increased padding for the specified viewport range */
+  }
+}
+
+.tabs {
+  padding-right: 20px; /* Default padding */
+}
+
+/* Media query for viewport widths between 400px and 600px */
+@media (min-width: 300px) and (max-width: 700px) {
+  .tabs {
+    padding-left: 12vw; /* Increased padding for the specified viewport range */
+  }
+}
+
+/* Optional: Media query for viewport widths larger than 600px */
+@media (min-width: 701px) {
+  .tabs {
+    padding-left: 2vw; /* Reset to default or adjust as needed */
+  }
+}
+
+@media (max-width: 700px) {
+  .ok {
+    height: 300px;
+  }
+}

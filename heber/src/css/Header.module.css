@@ -1,24 +1,46 @@
-.rip {
+/* Default styling for larger screens */
+.navBar {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex; /* Flexbox */ 
-  justify-content: center; /* Vertically center content */
-  align-items: center; /* Horizontally center content */
+  display: flex; /* Flexbox */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
 }
 
-@media screen and ( max-width: 800px ) {
-  .nav-header { 
-    width: 20vmin;
-  }
+.lineItem {
+  padding-inline: 45px; /* Spacing between items */
+}
+
+.contactButtonContainer {
+  margin-left: auto; /* Push contact button to the far right */
+}
+
+/* Media query for screens smaller than 900px */
+@media (max-width: 900px) {
   .lineItem {
-    width: 100%;
+    padding-inline: 15px; /* Reduce padding between items significantly */
+  }
+}
+
+/* Additional media query for screens smaller than 600px for further adjustments */
+@media (max-width: 600px) {
+  .lineItem {
+    padding-inline: 10px; /* Further reduce padding between items */
+  }
+}
+
+/* Optional: Additional media query for very small screens */
+@media (max-width: 400px) {
+  .lineItem {
+    padding-inline: 5px; /* Minimize padding between items */
   }
 }
 
 .navLinks {
   width: auto;
 }
+
 
 .lineItem {
   padding-inline: 45px;
@@ -35,21 +57,13 @@ a:hover {
   color: #00A000;/* Change color on hover */
 }
 
-.nav li:last-child {
-  margin-right: 0;
-}
-
 .nav a {
   text-decoration: none;
   color: black;
 }
 
 .nav .active a {
-  font-weight: bold; /* Highlight active tab */
-}
-
-.contactButtonContainer {
-  margin-left: auto; /* Adjust spacing from navigation */
+  font-weight: bold;
 }
 
 .contactButton {
@@ -70,35 +84,9 @@ a:hover {
   margin-left: 3.5em; /* Adjust spacing from navigation */
 }
 
-.vMenuButton {
-  padding: 10px 15px;
-  background-color: #006400;
-  color: white;
-  border: 1px solid white;
-  border-radius: 20px;
-  cursor: pointer; 
-}
-
-.vMenuButton:hover {
-  background-color: #00A000;
-}
-
-.vMarketButtonContainer {
+.vMarketBtnContainer {
   margin-left: auto; /* Adjust spacing from navigation */
   padding-left: 15px;
-}
-
-.vMarketButton {
-  padding: 10px 15px;
-  background-color: #DAA520;
-  color: white;
-  border: 1px solid white;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.vMarketButton:hover {
-  background-color: #FFC000;
 }
 
 .content {
@@ -116,13 +104,6 @@ a:hover {
   margin: 0px 0px 1.5em 3.9em; /* top: 10px, right: 20px, bottom: 30px, left: 40px */
 }
 
-.bold {
-  font-weight: bold;
-}
-
-.nBold {
-  font-weight: normal;
-}
 
 .pageContent {
   margin-top: 20px; /* Adjust top margin as needed */

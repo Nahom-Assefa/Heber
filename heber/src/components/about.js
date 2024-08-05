@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Box, Typography, Button } from '@mui/material';
 import client from '../api/sanityClient';
 import { urlFor } from '../utils/imageURL';
-import aCSS from '../css/About.module.css';
+import commonCSS from '../css/Common.module.css';
+
 
 function About() {
   const [coffeeGuy, setCoffeeGuy] = useState('');
@@ -9,61 +11,136 @@ function About() {
   const [logo, setLogo] = useState('');
 
   const all = `*[_type == "AboutImages"]{image, title}`;
-  
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          const aboutData = await client.fetch(all);
 
-          aboutData.forEach(function(a_item) {
-            switch(a_item.title) {
-              case "About Us Image": setCoffeeGuy(urlFor(a_item.image).sharpen().url())
-                break;
-              case "African Print": setPrint(urlFor(a_item.image).sharpen().url())
-                break;
-              case "Logo White": setLogo(urlFor(a_item.image).sharpen().url())
-                break;
-              default:
-                break;
-            }
-          })
-        } catch (error) {
-          console.error('Error fetching data:', error); // Could set a default banner URL or handle the error in another way
-        }
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const aboutData = await client.fetch(all);
+
+        aboutData.forEach(function(a_item) {
+          switch(a_item.title) {
+            case "About Us Image": setCoffeeGuy(urlFor(a_item.image).sharpen(10).url());
+              break;
+            case "African Print": setPrint(urlFor(a_item.image).sharpen(10).url());
+              break;
+            case "Logo White": setLogo(urlFor(a_item.image).sharpen(10).url());
+              break;
+            default:
+              break;
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      fetchData();
-    }, []);
+    }
+    fetchData();
+  }, []);
 
   return (
-    <>
-
-
-    <div className={aCSS.aboutSection}>
-      <div className={aCSS.aboutImage1}>
-        <img src={coffeeGuy} className= {aCSS.aboutImage2} alt="About Us" />
-      </div>
-      <div className={aCSS.aboutContent}>
-        <div className={aCSS.aboutImage1}>
-          <img src={logo} alt="Logo" />
-        </div>
-        <h2 className={aCSS.aboutUsh2}>About Us</h2>
-        <p className={aCSS.aboutUsP}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        boxSizing: 'border-box',
+        padding: 2,
+        backgroundColor: "#5A5A5A"
+      }}
+    >
+      <Box
+        sx={{
+          flex: 1,
+          overflow: 'hidden',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <img
+          src={coffeeGuy}
+          alt="About Us"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      </Box>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          backgroundColor: '#FFA500',
+          position: 'relative',
+          padding: 2,
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: 2,
+          }}
+        >
+          <img
+            src={logo}
+            alt="Logo"
+            style={{ width: '100%', height: 'auto' }}
+          />
+        </Box>
+        <Typography variant="h2" align="center" className={commonCSS.title} sx={{ mb: 2 }}>
+          About Us
+        </Typography>
+        <Typography sx={{ mb: 2, lineHeight: 1.4 }}>
           At Heber Market & Cafe we're more than a coffee shop; we're a gathering place where traditions thrive and friendships flourish.
           Rooted in our Ethiopian heritage, we're dedicated to fostering a sense of belonging within our diverse community.
           Join us for a taste of authenticity and warmth.
-        </p>
-        <p>
+        </Typography>
+        <Typography sx={{ mb: 2, lineHeight: 1.4 }}>
           Our mission is to deliver the best experience to our customers and to continuously innovate to meet their needs.
-        </p>
-        <div className={aCSS.learnMoreContainer}>
-          <button className={aCSS.learnMoreBtn}>Learn More</button>
-        </div>
-        <div>
-          <img src={`${africanPrint}`} alt="Example Imag" className={aCSS.africanCover} />
-        </div>
-      </div>
-    </div>
-    </>
+        </Typography>
+        <Box
+          sx={{
+            textAlign: 'center',
+            marginBottom: 7,
+          }}
+        >
+          <Button
+            variant="contained"
+            color="success"
+            sx={{
+              paddingX: 3,
+              paddingY: 1,
+              borderRadius: 20,
+              ':hover': {
+                backgroundColor: '#00A000',
+              },
+            }}
+          >
+            Learn More
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            width: '100%',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+          }}
+        >
+          <img
+            src={africanPrint}
+            alt="African Print"
+            style={{
+              width: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </Box>
+      </Box>
+    </Box>
   );
 }
 

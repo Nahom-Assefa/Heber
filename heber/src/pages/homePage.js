@@ -5,7 +5,7 @@ import Menu from '../components/menu';
 import About from '../components/about';
 import Collage from '../components/collage'; 
 import oCSS from '../css/Offer.module.css';
-import Loyalty from '../components/loyaltyProgram';
+import Connected from '../components/getConnected';
 import Footer from '../components/footer'
 
 const HomePage = () => {
@@ -18,9 +18,8 @@ const HomePage = () => {
       <Menu />
       <About />
       <Collage />
-      <Loyalty />
+      <Connected />
       <Footer />
-      {/* Home page content */}
     </section>
   );
 };

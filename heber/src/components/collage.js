@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import client from '../api/sanityClient';
 import { urlFor } from '../utils/imageURL';
-import styles from '../css/Collage.module.css';
+import { Box, CircularProgress } from '@mui/material';
+
+const charcoal = '#5A5A5A';
 
 function Collage() {
   const [entirety, setEntirety] = useState('');
   const [, setCollageData] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   const entireCollage = `
     *[_type == "collageImages"]{
@@ -26,34 +28,34 @@ function Collage() {
       try {
         const data = await client.fetch(entireCollage);
         
-        // Update state with fetched data
         setCollageData(data);
 
         data.forEach(function(a_item) {
-          switch(a_item.title) {
-            case "collage":
-              setEntirety(urlFor(a_item.image).sharpen().url());
-              break;
-            default:
+          if (a_item.title === "collage") {
+            setEntirety(urlFor(a_item.image).sharpen().url());
           }
         });
       } catch (error) {
-        console.error('Error fetching data:', error); // Could set a default banner URL or handle the error in another way
+        console.error('Error fetching data:', error);
       } finally {
-        setLoading(false); // Set loading to false after fetch completes
+        setLoading(false);
       }
     }
     fetchData();
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Render a loading message or spinner
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: charcoal }}>
+        <CircularProgress color="inherit" />
+      </Box>
+    );
   }
 
   return (
-    <div className={styles.collageDiv}>
-      <img src={`${entirety}`} alt="Entirety" className={styles.collageImg} />
-    </div>
+    <Box sx={{ backgroundColor: charcoal, padding: 2, textAlign: 'center' }}>
+      <img src={entirety} alt="Entirety" style={{ maxWidth: '100%', height: 'auto' }} />
+    </Box>
   );
 }
 

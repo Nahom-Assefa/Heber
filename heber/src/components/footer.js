@@ -1,46 +1,104 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import client from '../api/sanityClient';
+import { urlFor } from '../utils/imageURL';
 import { FaSquareInstagram, FaRegClock, FaTiktok, FaLocationDot } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
-import { CiLocationOn } from "react-icons/ci";
 import { Link } from 'react-router-dom';
-import footerCSS from '../css/footer.module.css'
+import { Box, Typography, IconButton } from '@mui/material';
 
-function footer () {
+function Footer() {
+  const [heberLogo, setLogo] = useState('');
+  const logoAsset = `*[_type == "headerImage" && title == "Heber Logo White"]{image, title}`;
 
-  return (
-    <footer style={{backgroundColor: "#1F2A30"}}>
-      <div className={footerCSS.gridContainer}>
-        <div className={`${footerCSS.gridItem} ${footerCSS.gridItemBorder}`}>Row 1</div>
-        <div className={`${footerCSS.gridItem} ${footerCSS.gridItemBorder}`}>
-          <h1 className={footerCSS.textColor}>Important Links</h1>
-          <ul className={``}>
-          {/* Use Link component for navigation */}
-          <li className=""><Link to="/">Home</Link></li>
-          <li className=""><Link to="/market">Market</Link></li>
-          <li className=""><Link to="/about">About</Link></li>
-          <li className=""><Link to="/careers">Careers</Link></li>
-          </ul>
-        </div>
-        <div className={footerCSS.gridItem}>
-          <h1 className={footerCSS.textColor}>Location And Working Hours</h1>
-          <div style={{display: 'flex', justifyContent: 'left', marginBottom: '10px', color: 'white', textAlign: 'left'}}>
-            <FaLocationDot style={{color: '#DAA520', fontSize: '26px', marginRight: '15px'}} />
-            3515 S Jefferson St, Falls Church, VA 22041
-          </div>
-          <div style={{display: 'flex', justifyContent: 'left', color: 'white', textAlign: "left"}}>
-            <FaRegClock style={{color: '#DAA520', fontSize: '24px', marginRight: '10px'}} />
-            Hours Open: <br/> 
-            Mon-Sun 09:00AM - 10:00PM
-          </div>
-          <div className={footerCSS.socialIcons}>
-            <FaTiktok style={{color: '#DAA520'}} />
-            <FaSquareInstagram style={{color: '#DAA520'}} />
-            <FaFacebookSquare style={{color: '#DAA520'}}  />
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await client.fetch(logoAsset);
+        setLogo(urlFor(data[0].image).sharpen().url());
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, [logoAsset]);
+
+  return(
+  <Box sx={{
+    backgroundColor: "#1F2A30",
+    height: '500px', // Adjust height as needed
+    padding: 3,
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gap: 2,
+    color: 'white',
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+      gridTemplateRows: 'repeat(3, auto)',
+      height: 'auto',
+    },
+  }}>
+    <Box sx={{
+      textAlign: 'center',
+      padding: 2,
+      borderRight: '1px solid #ccc',
+      '@media (max-width: 768px)': {
+        borderRight: 'none',
+        borderBottom: '1px solid #ccc',
+      },
+    }}>
+      <img src={heberLogo} alt="Heber Logo" style={{ maxWidth: '100%', height: 'auto' }} />
+      <Typography variant="h5" sx={{ color: 'white', fontWeight: 'bold', marginY: 2 }}>
+        Where <span style={{ fontWeight: 'normal' }}>Community</span> Meets <span style={{ fontWeight: 'bold' }}>Culture</span>
+      </Typography>
+    </Box>
+
+    <Box sx={{
+      textAlign: 'center',
+      padding: 2,
+      borderRight: '1px solid #ccc',
+      '@media (max-width: 768px)': {
+        borderRight: 'none',
+        borderBottom: '1px solid #ccc',
+      },
+    }}>
+      <Typography variant="h6" sx={{ color: 'white', marginBottom: 2 }}>
+        Important Links
+      </Typography>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Link to="/" style={{ textDecoration: 'none', color: 'white', padding: '4px 0' }}>Home</Link>
+        <Link to="/market" style={{ textDecoration: 'none', color: 'white', padding: '4px 0' }}>Market</Link>
+        <Link to="/about" style={{ textDecoration: 'none', color: 'white', padding: '4px 0' }}>About</Link>
+        <Link to="/careers" style={{ textDecoration: 'none', color: 'white', padding: '4px 0' }}>Careers</Link>
+      </Box>
+    </Box>
+
+    <Box sx={{
+      textAlign: 'left',
+      padding: 2,
+      '@media (max-width: 768px)': {
+        borderRight: 'none',
+        borderBottom: '1px solid #ccc',
+      },
+    }}>
+      <Typography variant="h6" sx={{ color: 'white', marginBottom: 2, textAlign: 'center' }}>
+        Location And Working Hours
+      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'center', color: 'white', marginBottom: 1 }}>
+        <FaLocationDot style={{ color: '#DAA520', fontSize: '26px', marginRight: '15px' }} />
+        <Typography>3515 S Jefferson St, Falls Church, VA 22041</Typography>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', color: 'white' }}>
+        <FaRegClock style={{ color: '#DAA520', fontSize: '24px', marginRight: '10px' }} />
+        <Typography>Hours Open: Mon-Sun 09:00AM - 10:00PM</Typography>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, marginTop: 2 }}>
+        <IconButton sx={{ color: '#DAA520' }}><FaTiktok /></IconButton>
+        <IconButton sx={{ color: '#DAA520' }}><FaSquareInstagram /></IconButton>
+        <IconButton sx={{ color: '#DAA520' }}><FaFacebookSquare /></IconButton>
+      </Box>
+    </Box>
+  </Box>
+);
 }
 
-export default footer;
+export default Footer;

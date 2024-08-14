@@ -1,25 +1,21 @@
 import React from 'react';
 import Header from '../components/header';
-import MarketOffer from '../components/marketOffer';
-import oCSS from '../css/Market.module.css';
 import Footer from '../components/footer';
-import MarketCollage from '../components/marketCollage';
-import MarketMap from '../components/marketMap';
 import OurStory from '../components/ourStory';
+import OurVision from '../components/ourVision';
+import TimeLine from '../components/timeline';
 
-const MarketPage = () => {
+const AboutPage = () => {
   return (
-    <section className={ oCSS.offer }>
-      <Header
-        page='about'
-      />
+    <section>
+      <Header page='about'/>
       <OurStory/>
-      <MarketOffer/>
-      <MarketMap/>
-      <Footer />
+      <OurVision/>
+      <TimeLine/>
+      <Footer page='about'/>
     {/* Market Place page content */}
   </section>
   );
 };
 
-export default MarketPage;
+export default AboutPage;

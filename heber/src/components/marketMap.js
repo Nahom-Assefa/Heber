@@ -16,41 +16,65 @@ function MarketMap() {
         justifyContent: 'center', 
         alignItems: 'center', 
         textAlign: 'center', 
-        height: '500px' 
+        height: '500px',
       }}
     >
       <Typography 
-        variant="h4" 
+        variant="h2"
         sx={{ 
-          fontWeight: 500, 
+          fontFamily: 'Cinzel, serif',
           mb: 2 
         }}
       >
-        How do you get to us? 📍
+        Location
       </Typography>
-      <Typography 
-        variant="body1" 
-        sx={{ 
-          mb: 4 
-        }}
-      >
-
-      </Typography>
-      <Button
-        variant="contained"
+      <Box
         sx={{
-          backgroundColor: '#006400',
-          color: 'white',
-          padding: '10px 15px',
-          borderRadius: '20px',
-          '&:hover': {
-            backgroundColor: '#004d00',
-          },
+          background: "#FFA500",
+          padding: 4,
+          borderRadius: 2,
+          maxWidth: '500px',
+          height: "300px",
+          margin: '0 auto',
+          mb: 5,
+          boxShadow: 3,
         }}
-        onClick={handleButtonClick}
-      >
-        Get directions
-      </Button>
+      > 
+        <Typography 
+          variant="h4" 
+          sx={{ 
+            fontSize: "1.5em",
+            mb: 2,
+            fontfamily: "'Great Vibes', cursive"
+          }}
+        >
+          Find us just off the intersection of Jefferson street and Leesburg Pike! 💣
+        </Typography>
+        <Typography 
+          variant="body1" 
+          sx={{ 
+            mb: 4 
+          }}
+        >
+  
+        </Typography>
+        <Button
+          variant="contained"
+          sx={{
+            mt: 5,
+            backgroundColor: '#1F2A30',
+            color: 'white',
+            padding: '10px 15px',
+            borderRadius: '20px',
+            '&:hover': {
+              backgroundColor: '#2a3a43',
+            },
+          }}
+          onClick={handleButtonClick}
+        >
+          Get directions 📍
+        </Button>
+      </Box>
     </Box>
   );
 }

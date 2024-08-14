@@ -1,8 +1,3 @@
-:root {
-  --restaurant-padding: calc(20vw + 40px); /* Adjust base value and scaling factor as needed */
-  --market-padding: calc(20vw + 40px);
-}
-
 .title {
   text-align: center !important;
   /* margin-bottom: 10px; */
@@ -22,7 +17,7 @@
 
 .primaryBtn {
   padding: 10px 15px;
-  background-color: #006400;
+  background-color: #006400 !important;
   color: white;
   border: 1px solid white;
   border-radius: 20px;
@@ -30,12 +25,12 @@
 }
 
 .primaryBtn:hover {
-  background-color: #00A000;
+  background-color: #00A000 !important;
 }
 
 .secondaryBtn{
   padding: 10px 15px;
-  background-color: #DAA520;
+  background-color: #DAA520 !important;
   color: white;
   border: 1px solid white;
   border-radius: 20px;
@@ -43,90 +38,79 @@
 }
 
 .secondaryBtn:hover {
-  background-color: #FFC000;
+  background-color: #FFC000 !important;
 }
 
-.contactBtn {
+.subscribeBtn {
   padding: 10px 15px;
-  background-color: transparent;
+  background-color: #1F2A30 !important;
   color: white;
+  border: 1px solid white;
   border-radius: 20px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
-.contactBtn:hover {
-  background-color: #00A000;
-}
-
-/* Media query for large screens (min-width: 1200px) */
 @media (min-width: 1400px) {
   .secondaryBtn, .primaryBtn {
-    padding: 12px 18px;
-    font-size: 1rem; /* Adjust as needed */
+    padding: 12px 18px !important;
+    font-size: 1rem !important;
   }
 }
 
-/* Media query for medium screens (min-width: 992px and max-width: 1199px) */
 @media (min-width: 900px) and (max-width: 1400px) {
   .secondaryBtn, .primaryBtn {
-    padding: 10px 15px;
-    font-size: 0.65rem; /* Adjust as needed */
+    padding: 10px 15px !important;
+    font-size: 0.9rem !important;
   }
 }
 
-/* Media query for small screens (min-width: 768px and max-width: 991px) */
 @media (min-width: 600px) and (max-width: 900px) {
   .secondaryBtn, .primaryBtn {
-    padding: 4px 6px;
-    font-size: 0.65rem; /* Adjust as needed */
+    padding: 6px 8px !important;
+    font-size: 0.8rem !important;
   }
 }
 
-/* Media query for extra small screens (max-width: 767px) */
 @media (min-width: 480px) and (max-width: 599px) {
   .secondaryBtn, .primaryBtn {
-    padding: 2px 6px;
-    font-size: 0.45rem; /* Adjust as needed */
+    padding: 2px 6px !important;
+    font-size: 0.45rem !important;
   }
 }
 
 @media (max-width: 479px) {
   .secondaryBtn, .primaryBtn {
-    padding: 1px 3px;
-    font-size: 0.35rem; /* Adjust as needed */
+    padding: 1px 3px !important;
+    font-size: 0.35rem !important;
   }
 }
 
-/* Media query for medium screens (min-width: 992px and max-width: 1199px) */
-@media (min-width: 900px) and (max-width: 1400px) {
-  .contactBtn {
-    padding: 10px 15px;
-    font-size: 0.35rem; /* Adjust as needed */
-  }
-}
-
-/* Media query for small screens (min-width: 768px and max-width: 991px) */
-@media (min-width: 600px) and (max-width: 900px) {
-  .contactBtn {
-    padding: 4px 8px;
-    font-size: 0.35rem; /* Adjust as needed */
-  }
-}
-
-/* Media query for extra large screens (max-width: 767px) */
 @media (min-width: 1400px) {
   .contactBtn {
-    padding: 8px 20px;
-    font-size: 1rem; /* Adjust as needed */
+    padding: 8px 20px !important;
+    font-size: 1rem !important;
   }
 }
 
-/* Media query for extra small screens (max-width: 767px) */
+@media (min-width: 900px) and (max-width: 1400px) {
+  .contactBtn {
+    padding: 10px 15px !important;
+    font-size: 0.8rem !important; /* Adjust as needed */
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .contactBtn {
+    padding: 4px 8px !important;
+    font-size: 0.5rem !important;
+  }
+}
+
 @media (max-width: 599px) {
   .contactBtn {
-    margin-bottom: 6px;
-    padding: 3px 5px;
-    font-size: 0.25rem; /* Adjust as needed */
+    margin-bottom: 6px !important;
+    padding: 3px 5px !important;
+    font-size: 0.4rem !important;
   }
 }
 
@@ -134,52 +118,87 @@
   text-align: center;
 }
 
-.restaurantPadding li {
-  padding-left: var(--restaurant-padding);
-}
-
-/* Media query for viewport widths between 400px and 600px */
-@media (min-width: 900px) and (max-width: 12000px) {
-  .restaurantPadding li {
-    padding-left: 26vw; /* Increased padding for the specified viewport range */
-  }
-}
-
 .tabs {
-  padding-right: 20px; /* Default padding */
+  padding-right: 20px;
 }
 
 .marketPadding li {
   padding-left: var(--market-padding);
 }
 
-/* Media query for viewport widths between 400px and 600px */
 @media (min-width: 620px) and (max-width: 12000px) {
   .marketPadding li {
-    padding-left: 5vw; /* Increased padding for the specified viewport range */
+    padding-left: 5vw;
   }
 }
 
 .tabs {
-  padding-right: 20px; /* Default padding */
+  padding-right: 20px;
 }
 
-/* Media query for viewport widths between 400px and 600px */
 @media (min-width: 300px) and (max-width: 700px) {
   .tabs {
-    padding-left: 12vw; /* Increased padding for the specified viewport range */
+    padding-left: 12vw;
   }
 }
 
-/* Optional: Media query for viewport widths larger than 600px */
 @media (min-width: 701px) {
   .tabs {
-    padding-left: 2vw; /* Reset to default or adjust as needed */
+    padding-left: 2vw;
   }
 }
 
 @media (max-width: 700px) {
-  .ok {
+  .dynamicHeaderHeight {
     height: 300px;
+  }
+}
+
+/* Unfortunate mitigation hack to get menu component responsive */
+@media (min-width: 1200px) and (max-width: 4000px) {
+  .restaurantPadding li {
+    padding-left: 26vw;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1200px) {
+  .restaurantPadding li {
+    padding-left: 30vw;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1100px) {
+  .restaurantPadding li {
+    padding-left: 28vw;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 999px) {
+  .restaurantPadding li {
+    padding-left: 26vw;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 800px) {
+  .restaurantPadding li {
+    padding-left: 20vw;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 639px) {
+  .restaurantPadding li {
+    padding-left: 17vw;
+  }
+}
+
+@media (max-width: 599px) {
+  .restaurantPadding li {
+    text-align: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .marketPadding li {
+    text-align: center;
   }
 }

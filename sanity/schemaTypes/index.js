@@ -1,11 +1,9 @@
-import product from './product';
 import headerImage from './headerImage';
 import offer from './offer';
 import about from './about';
-import collage from  './collage';
-import loyaltyProgram from './loyaltyProgram'
-import footerIcons from "./footer"
+import collage from  './marketCollage';
+import vision from "./vision"
 import marketOffer from './marketOffer';
-import marketCollage from './marketCollage';
+import marketCollage from './collage';
 
-export const schemaTypes = [product, headerImage, offer, about, collage, loyaltyProgram, footerIcons, marketOffer, marketCollage]
+export const schemaTypes = [headerImage, offer, about, collage, vision, marketOffer, marketCollage]

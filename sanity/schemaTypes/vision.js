@@ -1,6 +1,6 @@
 export default {
-  name: 'footerIcons',
-  title: 'Footer Social Icons',
+  name: 'Vision',
+  title: 'Vision',
   type: 'document',
   fields: [
     {

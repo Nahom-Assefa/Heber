@@ -1,5 +1,5 @@
 export default {
-  name: 'collageImages',
+  name: 'CollageImages',
   title: 'Collage Images',
   type: 'document',
   fields: [
@@ -7,11 +7,14 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
+      options: {
+        hotspot: true, // Enables the image editor with cropping and hotspot options
+      }
     },
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-    }
+    },
   ],
 };

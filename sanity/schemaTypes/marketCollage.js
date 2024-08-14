@@ -7,6 +7,9 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
+      options: {
+        hotspot: true, // Enables the image editor with cropping and hotspot options
+      }
     },
     {
       name: 'title',

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useScroll } from './scrollToTop';
 import { Container, Box, Tab, Tabs, Typography, List, ListItem, ListItemText, useMediaQuery, useTheme } from '@mui/material';
 import commonCSS from '../css/Common.module.css';
 
@@ -42,14 +43,20 @@ const Menu = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const sectionRef = useRef(null);
+  const { addRef } = useScroll();
+
+  useEffect(() => {
+    addRef('menuSection', sectionRef.current);
+  }, [addRef]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{height: {md: "auto", lg: "500px"}}}>
-      <Typography variant="h1" className={commonCSS.title}>
+    <Box ref={sectionRef} sx={{height: {md: "auto", lg: "500px"}}}>
+      <Typography variant="h1" className={commonCSS.title} sx={{mb:2}}>
         Menu
       </Typography>
       <Typography variant="body1" className={commonCSS.para}>
@@ -67,8 +74,8 @@ const Menu = () => {
         >
           <Box sx={{ width: { xs: '100%', sm: 'auto' } }}>
             <Tabs value={value} className={commonCSS.tabs} onChange={handleChange} aria-label="menu tabs" orientation={isSmallScreen ? 'vertical' : 'horizontal'}>
-              <Tab label="Specialty Restaurant Items"/>
-              <Tab label="Specialty Market Items"/>
+              <Tab sx={{fontSize: {xs: "0.875rem", sm: "0.75rem", md: "0.875rem", lg: "0.875rem", xl: "0.875rem"}}} label="Specialty Restaurant Items"/>
+              <Tab sx={{fontSize: {xs: "0.875rem", sm: "0.75rem", md: "0.875rem", lg: "0.875rem", xl: "0.875rem"}}} label="Specialty Market Items"/>
             </Tabs>
           </Box>
         </Box>

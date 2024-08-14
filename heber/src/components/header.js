@@ -1,24 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import client from '../api/sanityClient';
-import { urlFor } from '../utils/imageURL';
-import { Box, Button, Typography } from '@mui/material';
+import {urlFor} from '../utils/imageURL';
+import {Box, Button, Typography, CircularProgress} from '@mui/material';
+import useLoading from './setLoadingHook';
 import commonCSS from '../css/Common.module.css';
+import {useScroll} from './scrollToTop';
 
 function Header(props) {
   const [banner, setBanner] = useState('');
   const [heberLogo, setLogo] = useState('');
-  const [afroDivPrint, setAfroPrint] = useState('');
+  const [afroPrint, setAfroPrint] = useState('');
   const [menuIcon, setMenuIcon] = useState('');
   const [marketIcon, setMarketIcon] = useState('');
+  const {isLoading, startLoading, stopLoading} = useLoading();
+  const navigate = useNavigate();
+  const { scrollTo } = useScroll();
   const all = `*[_type == "headerImage"]{image, title}`;
 
   const { page } = props;
-  const dynamicClass = page !== 'home' ? commonCSS.ok : '';
+  const dynamicClass = page !== 'home' ? commonCSS.dynamicHeaderHeight : '';
 
   useEffect(() => {
     async function fetchData() {
       try {
+        startLoading();
+
         const headerComponentData = await client.fetch(all);
         switch (page) {
           case 'home':
@@ -61,7 +68,24 @@ function Header(props) {
             case 'about':
               headerComponentData.forEach(a_item => {
                 switch (a_item.title) {
-                  case "About Page Banner Image":
+                  case "About Page Banner":
+                    setBanner(urlFor(a_item.image).sharpen().url());
+                    break;
+                  case "Heber Logo White":
+                    setLogo(urlFor(a_item.image).sharpen().url());
+                    break;
+                  case "Afro Div Print":
+                    setAfroPrint(urlFor(a_item.image).sharpen().url());
+                    break;
+                  default:
+                    break;
+                }
+              });
+            break;
+            case 'contact':
+              headerComponentData.forEach(a_item => {
+                switch (a_item.title) {
+                  case "Contact Page Banner":
                     setBanner(urlFor(a_item.image).sharpen().url());
                     break;
                   case "Heber Logo White":
@@ -78,99 +102,185 @@ function Header(props) {
           default:
             break;
         }
+        
+        stopLoading();
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.warn('Error fetching data:', error);
       }
     }
     fetchData();
-  }, [page]);
+  }, [page, all, startLoading, stopLoading]);
+
+  const handleViewMarketClick = () => {
+    navigate('/market'); // Navigate to the /market page
+  };
+
+  const handleViewMenuClick = () => {
+    scrollTo('menuSection');
+  };
 
   return (
     <>
-      <Box
-        sx={{
-          backgroundImage: `url(${banner})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          height: {sm: '500px', md: "500px"},
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          p: 2,
-        }}
-        className={dynamicClass}
-      >
+      {isLoading ? (
+        <Box sx={{ textAlign: 'center', mt: 12 }}>
+          <CircularProgress/>
+        </Box>
+      ) : (
         <Box
           sx={{
-            display: 'flex',         
+            backgroundImage: `url(${banner})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            height: {xs: '300px', sm: '500px', md: "500px"},
+            flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '100%',
+            position: 'relative',
+            p: 2,
           }}
+          className={dynamicClass}
         >
           <Box
             sx={{
-              display: 'flex',
+              display: 'flex',         
               alignItems: 'center',
               justifyContent: 'center',
-              textAlign: 'center',
-              marginTop: '0'
+              width: '100%',
             }}
           >
-            <Box component="img" src={heberLogo} alt="Heber Logo" sx={{ mb: {xs: 2, sm: 0}, width: { xs: '10%', sm: '30%', md: '30%', lg: '25%' } }} />
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <Button variant="text" sx={{ color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '0.875em', md: '1.125em' } }}>Home</Button>
-            </Link>
-            <Link to="/market" style={{ textDecoration: 'none' }}>
-              <Button variant="text" sx={{ color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '.875em', md: '1.125em' } }}>Market</Button>
-            </Link>
-            <Link to="/about" style={{ textDecoration: 'none' }}>
-              <Button variant="text" sx={{ color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '.875em', md: '1.125em' } }}>About</Button>
-            </Link>
-            <Link to="/careers" style={{ textDecoration: 'none' }}>
-              <Button variant="text" sx={{ color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '0.875em', md: '1.125em' } }}>Careers</Button>
-            </Link>
-            <Button variant="outlined" className={commonCSS.contactBtn} >Contact</Button>
-          </Box>
-        </Box>
-        {page === 'home' && (
-          <Box sx={{ mt: {xs: 2, sm: 3, md: 4 }}}>
-            <Typography variant="h1" sx={{color: 'white', fontSize: {xs: '0.875em', sm: '2em', md: '2.5em', lg: '3em', xl: '3.5em'}, mb: {xs: 1, sm: 2},}}>
-              <span style={{ fontWeight: 'normal' }}>Where</span> <span style={{ fontWeight: 'bold' }}>Community</span> <br />
-              <span style={{ fontWeight: 'normal' }}>Meets</span> <span style={{ fontWeight: 'bold' }}>Culture</span>
-            </Typography>
-            <Typography variant="body1" sx={{color: 'white', fontSize: {xs: '.25em', sm: '.6em', md: '.8em', lg: '1em', xl: '1em'}, mb: {xs: 1, sm: 2},}}>
-              Experience the vibrant fusion of Ethiopian heritage <br />
-              and modern convenience at Heber Market & Cafe.
-            </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'left', gap: 2 }}>
-              <Button
-                variant="contained"
-                className={commonCSS.primaryBtn}
-              >
-                <img src={menuIcon} alt="Menu Icon" style={{ width: '18px', height: '18px', marginRight: '5px' }} />
-                View Menu
-              </Button>
-              <Button
-                variant="contained"
-                className={commonCSS.secondaryBtn}
-              >
-                <img src={marketIcon} alt="Market Icon" style={{ width: '18px', height: '15px', marginRight: '5px' }} />
-                View Market
-              </Button>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                marginTop: '0'
+              }}
+            >
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <Box component="img" src={heberLogo} alt="Heber Logo" sx={{ mb: {xs: 2, sm: 0}, width: { xs: '40px', sm: '50%', md: '70%', lg: '70%' } }} />
+              </Link>
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <Button variant="text" sx={{color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '0.875em', md: '1.125em' } }}>Home</Button>
+              </Link>
+              <Link to="/market" style={{ textDecoration: 'none' }}>
+                <Button variant="text" sx={{ color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '.875em', md: '1.125em' } }}>Market</Button>
+              </Link>
+              <Link to="/about" style={{ textDecoration: 'none' }}>
+                <Button variant="text" sx={{ color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '.875em', md: '1.125em' } }}>About</Button>
+              </Link>
+              <Link to="/contact" style={{ textDecoration: 'none' }}>
+                <Button variant="text" sx={{ color: 'white', mb: {xs: 1, sm: 0}, mx: {sm: 2}, fontSize: { xs: '0.500em', sm: '0.875em', md: '1.125em' } }}>Contact</Button>
+              </Link>
             </Box>
           </Box>
-        )}
-      </Box>
-      {page !== 'market' && (
-        <Box sx={{ width: '100%', height: '100%' }}>
-          <img src={afroDivPrint} alt="African Print" style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+          {page === 'home' && (
+            <Box sx={{ mt: {xs: 3, sm: 4, md: 4 }}}>
+              <Typography variant="h1" sx={{color: 'white', mt: {xs: 0, sm: 10, md: 0}, fontSize: {xs: '0.875em', sm: '2em', md: '2.5em', lg: '3em', xl: '3.5em'}}}>
+                <span style={{ fontWeight: 'normal' }}>Where</span> <span style={{ fontWeight: 'bold' }}>Community</span> <br />
+                <span style={{ fontWeight: 'normal' }}>Meets</span> <span style={{ fontWeight: 'bold' }}>Culture</span>
+              </Typography>
+              <Typography variant="body1" sx={{color: 'white', fontSize: {xs: '.25em', sm: '.6em', md: '.8em', lg: '1em', xl: '1em'}, mb: {xs: 1, sm: 2},}}>
+                Experience the vibrant fusion of Ethiopian heritage <br />
+                and modern convenience at Heber Market & Cafe.
+              </Typography>
+              <Box sx={{ display: 'flex', justifyContent: 'left', gap: 2 }}>
+                <Button
+                  variant="contained"
+                  className={commonCSS.primaryBtn}
+                  onClick={handleViewMenuClick}
+                >
+                  <img src={menuIcon} alt="Menu Icon" style={{ width: '18px', height: '18px', marginRight: '5px' }} />
+                  View Menu
+                </Button>
+                <Button
+                  variant="contained"
+                  className={commonCSS.secondaryBtn}
+                  onClick={handleViewMarketClick} 
+                >
+                  <img src={marketIcon} alt="Market Icon" style={{ width: '18px', height: '15px', marginRight: '5px' }} />
+                  View Market
+                </Button>
+              </Box>
+            </Box>
+          )}
+          {page === 'market' && (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                mt: {xs: 5, sm: 8, md: 10},
+                textAlign: 'center',
+              }}
+            >
+              <Typography
+                variant='h1'
+                sx={{
+                  color: 'white',
+                  fontSize: {
+                    xs: '3em',
+                    sm: '4em',
+                    md: '5em',
+                    lg: '6em',
+                  },
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 'bold',
+                  textShadow: '5px 2px 4px rgba(0, 0, 0, 0.7)',
+                }}
+              >
+                Market
+              </Typography>
+            </Box>
+          )}
+          {page === 'contact' && (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',   // Vertically center
+                justifyContent: 'center', // Horizontally center
+                textAlign: 'center',
+                mt: {xs: 5, sm: 8, md: 10}
+              }}
+            >
+              <Typography
+                variant='h1'
+                sx={{
+                  color: 'white', // Ensures text is visible on various backgrounds
+                  fontSize: {
+                    xs: '3em',   // Adjust font size for extra small viewports
+                    sm: '4em',   // Adjust font size for small viewports
+                    md: '5em',   // Adjust font size for medium viewports
+                    lg: '6em',  // Adjust font size for large viewports
+                  },
+                  fontFamily: "'Playfair Display', serif",
+                  fontWeight: 'bold',
+                  textShadow: '3px 2px 4px rgba(0, 0, 0, 0.7)',
+                }}
+              >
+                Contact
+              </Typography>
+            </Box>
+          )}
+          {(page === 'home' || page === 'contact') && (
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: {xs: -12, sm: -7},
+                left: 0,
+                width: '100%',
+                height: '2.5vh',
+                overflow: 'hidden'
+              }}
+            >
+              <img src={afroPrint} alt="African Print" style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+            </Box>
+          )}
         </Box>
-      )}
+      )} 
     </>
   );
 }
 
 export default Header;
-

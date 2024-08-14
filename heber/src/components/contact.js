@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Box, TextField, Button, Typography} from '@mui/material';
-import {FaEnvelope, FaPhone, FaTiktok, FaInstagram, FaFacebook} from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Box, TextField, Button, Typography } from '@mui/material';
+import { FaEnvelope, FaPhone, FaTiktok, FaInstagram, FaFacebook } from 'react-icons/fa';
 import axios from 'axios';
 
 const Contact = () => {
@@ -20,6 +20,8 @@ const Contact = () => {
     message: '',
   });
 
+  const [successMessage, setSuccessMessage] = useState(''); // State for success message
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -34,7 +36,7 @@ const Contact = () => {
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is in a invalid format - ex. xxxx@gmail.com';
+      newErrors.email = 'Email is in an invalid format - ex. xxxx@gmail.com';
     }
     if (!formData.message) newErrors.message = 'Message is required';
 
@@ -62,6 +64,7 @@ const Contact = () => {
         },
       });
 
+      // Reset form data and errors
       setFormData({
         firstName: '',
         lastName: '',
@@ -70,6 +73,12 @@ const Contact = () => {
         message: '',
       });
       setErrors({});
+      
+      // Set success message and clear it after 10 seconds
+      setSuccessMessage('Your message has been sent successfully!');
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 10000);
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -112,15 +121,15 @@ const Contact = () => {
           Follow us:
         </Typography>
         <Box sx={{ display: 'flex', gap: 2, mb: 4, justifyContent: 'center' }}>
-        <a href="https://www.tiktok.com/@heber.market.and.cafe?lang=en" target="_blank" rel="noopener noreferrer" style={{ color: '#006400' }}>
-          <FaTiktok />
-        </a>
-        <a href="https://www.instagram.com/heber_market_cafe/" target="_blank" rel="noopener noreferrer" style={{ color: '#006400' }}>
-          <FaInstagram />
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61550639315206" target="_blank" rel="noopener noreferrer" style={{ color: '#006400' }}>
-          <FaFacebook />
-        </a>
+          <a href="https://www.tiktok.com/@heber.market.and.cafe?lang=en" target="_blank" rel="noopener noreferrer" style={{ color: '#006400' }}>
+            <FaTiktok />
+          </a>
+          <a href="https://www.instagram.com/heber_market_cafe/" target="_blank" rel="noopener noreferrer" style={{ color: '#006400' }}>
+            <FaInstagram />
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61550639315206" target="_blank" rel="noopener noreferrer" style={{ color: '#006400' }}>
+            <FaFacebook />
+          </a>
         </Box>
       </Box>
       <Box
@@ -183,54 +192,54 @@ const Contact = () => {
           helperText={errors.message}
           sx={{ borderRadius: '16px' }}
         />
+        {successMessage && (
+          <Typography variant="body2" color="green" sx={{ mt: 2 }}>
+            {successMessage}
+          </Typography>
+        )}
         <Button
           variant="contained"
-          // className={`${commonCSS.primaryBtn}`}
           sx={{
             mt: 2,
             backgroundColor: '#006400',
             '&:hover': {
-              backgroundColor: '#00A000', // Background color on hover
+              backgroundColor: '#00A000',
             },
             color: 'white',
             borderRadius: '16px',
             py: {
               xs: .5,
-              sm: 1,   // Increase vertical padding for small viewports
-              md: 1,   // Default padding for medium and larger viewports
+              sm: 1,
+              md: 1,
             },
             px: {
               xs: .5,
-              sm: 1,   // Increase horizontal padding for small viewports
-              md: 2,   // Default padding for medium and larger viewports
+              sm: 1,
+              md: 2,
             },
             fontSize: {
               xs: '.85em',
-              sm: '.85rem', // Larger font size for small viewports
-              md: '0.875rem', // Default font size for medium and larger viewports
+              sm: '.85rem',
+              md: '0.875rem',
             },
             minWidth: {
               xs: 'auto',
-              sm: 'auto', // Ensure a minimum width for small viewports
-              md: 'auto', // Default min width for medium and larger viewports
+              sm: 'auto',
+              md: 'auto',
             },
             width: {
               xs: 'auto',
-              sm: 'auto', // Maintain similar width for small viewports
-              md: 'auto', // Default width for medium and larger viewports
+              sm: 'auto',
+              md: 'auto',
             },
           }}
           onClick={handleSubmit}
         >
-        Submit
+          Submit
         </Button>
-
       </Box>
     </Box>
   );
 };
 
 export default Contact;
-
-
-

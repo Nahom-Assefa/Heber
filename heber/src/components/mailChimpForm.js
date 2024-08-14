@@ -7,6 +7,7 @@ function MailchimpForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
+  const [error, setError] = useState('');
   const [status, setStatus] = useState('');
   const [errors, setErrors] = useState({}); // Object to hold validation errors
   const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
@@ -45,12 +46,18 @@ function MailchimpForm() {
     if (formIsValid) {
       // Reset errors and fields
       setErrors({});
-      setStatus('Submitting...');
+      setError(''); // Clear previous error message
       
       // Submit the form programmatically
       const form = document.getElementById('mc-embedded-subscribe-form');
       if (form) {
         form.submit();
+        setStatus('Form has been submitted successfully!');
+        
+        // Clear the success message after 10 seconds
+        setTimeout(() => {
+          setStatus('');
+        }, 20000);
       }
 
       // Reset the form fields after submission
@@ -61,22 +68,23 @@ function MailchimpForm() {
     } else {
       // Set errors
       setErrors(newErrors);
-      setStatus('Please fix the errors above.');
+      setError('Please fix the errors above.');
+      setStatus(''); // Clear previous success message
     }
   };
 
   return (
     <>
-      <Typography sx={{textAlign: 'center', mt: 2}} variant="h2" gutterBottom>
+      <Typography sx={{ textAlign: 'center', mt: 2 }} variant="h2" gutterBottom>
         Join Our Community
       </Typography>
       <Box sx={{ maxWidth: '600px', margin: '0 auto' }}>
-      <Typography variant="body1" sx={{ mb: 4 }}>
+        <Typography variant="body1" sx={{ mb: 4 }}>
           We invite you to stay in the loop with our latest news, special promotions, and delightful
           surprises by sharing your details with us. Whether you're here for the first time or returning
           for your favorites, we love recognizing familiar faces. Keep coming back, and you'll discover
           that loyalty has its rewards.
-      </Typography>
+        </Typography>
       </Box>
       <Box
         sx={{
@@ -89,7 +97,7 @@ function MailchimpForm() {
           boxShadow: 3,
         }}
       >
-        <Typography sx={{textAlign: 'center', mt: 2, fontFamily: '"Pacifico", "Comic Sans MS", cursive', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)'}} variant="h3" gutterBottom>
+        <Typography sx={{ textAlign: 'center', mt: 2, fontFamily: '"Pacifico", "Comic Sans MS", cursive', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)' }} variant="h3" gutterBottom>
           Sign Up 👇🏾
         </Typography>
         <form
@@ -157,11 +165,12 @@ function MailchimpForm() {
             variant="contained"
             fullWidth
             className={commonCSS.subscribeBtn}
-            sx={{ mt: 3}}
+            sx={{ mt: 3 }}
           >
             Subscribe
           </Button>
-          {status && <Typography variant="body2" color="error" sx={{ mt: 2 }}>{status}</Typography>}
+          {error && <Typography variant="body2" color="error" sx={{ mt: 2 }}>{error}</Typography>}
+          {status && <Typography variant="body2" color="green" sx={{ mt: 2 }}>{status}</Typography>}
         </form>
       </Box>
     </>
@@ -169,4 +178,3 @@ function MailchimpForm() {
 }
 
 export default MailchimpForm;
-

@@ -63,7 +63,7 @@ function Collage() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1, textAlign: 'center' }}>
                 Injera
               </Typography>
-              <Typography variant="body1" sx={{lineHeight: {md: 2, lg: 3, xl: 3}}}>
+              <Typography variant="body1" sx={{lineHeight: {md: 2, lg: 2, xl: 2}}}>
                 Our tibs with injera and tere siga offers a symphony of tastes and textures, starting with tender, spiced beef tibs 
                 that are perfectly seared to lock in their juices. This is complemented by tere siga, fresh raw meat prepared with 
                 the utmost care, offering a unique and authentic experience. At our restaurant, we pride ourselves
@@ -75,7 +75,7 @@ function Collage() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1, textAlign: 'center' }}>
                 Fresh Bakery
               </Typography>
-              <Typography variant="body1" sx={{lineHeight: {md: 2, lg: 3}}}>
+              <Typography variant="body1" sx={{lineHeight: {md: 2, lg: 2}}}>
                 Step into our bakery and let the enticing aroma of freshly baked delights envelop you,
                 a symphony of flavors waiting to be savored. From crusty artisanal loaves to delicate pastries,
                 each creation is a testament to our dedication to craftsmanship and quality ingredients,
@@ -102,7 +102,7 @@ function Collage() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1, textAlign: 'center' }}>
                 Coffee
               </Typography>
-              <Typography variant="body1" sx={{lineHeight: {md: 1.5, lg: 3, xl: 3}}}>        
+              <Typography variant="body1" sx={{lineHeight: {md: 1.5, lg: 2, xl: 2}}}>        
                 Ethiopian coffee is renowned worldwide for its rich, complex flavors and deep cultural significance. 
                 At the heart of this tradition is the Jebena coffee ceremony, an authentic experience that goes beyond
                 just drinking coffee. Using a jebena, a traditional clay pot, coffee beans are roasted, ground, and brewed

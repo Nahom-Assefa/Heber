@@ -64,7 +64,7 @@ function MarketCollage() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1, fontFamily: "'Montserrat', serif", textAlign: 'center' }}>
                 Commodities
               </Typography>
-              <Typography variant="body1" sx={{ mb: 2, fontWeight: 'medium', fontFamily: 'Cormorant Garamond, serif', lineHeight: {md: 2, lg: 3}}}>
+              <Typography variant="body1" sx={{ mb: 2, fontWeight: 'medium', fontFamily: 'Cormorant Garamond, serif', lineHeight: {md: 1, lg: 2}}}>
               Discover an array of global goods and authentic African products, from exotic spices to handcrafted goods
               to everyday products, fresh produce and more! Our market not only offers diverse selections but also embodies
               the spirit and warmth of African hospitality. Experience the dynamic energy and rich variety of products
@@ -75,7 +75,7 @@ function MarketCollage() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1,  fontFamily: "'Montserrat', serif", textAlign: 'center'}}>
                 Fresh Meat
               </Typography>
-              <Typography variant="body1" sx={{ mb: 2, fontWeight: 'medium', fontFamily: 'Cormorant Garamond, serif', lineHeight: {md: 2, lg: 3}}}>
+              <Typography variant="body1" sx={{ mb: 2, fontWeight: 'medium', fontFamily: 'Cormorant Garamond, serif', lineHeight: {md: 1, lg: 2}}}>
                 Kurt, a traditional Ethiopian delicacy, offers a deep dive into Ethiopia's rich culinary heritage.
                 This unique dish, made from raw minced beef, is seasoned with a blend of traditional spices and herbs,
                 often including mitmita and niter kibbeh. Kurt has been a part of Ethiopian cuisine for centuries,
@@ -105,7 +105,7 @@ function MarketCollage() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1, fontFamily: "'Montserrat', serif", textAlign: 'center' }}>
                 Spices
               </Typography>
-              <Typography variant="body1" sx={{ mb: 2, fontWeight: 'medium', fontFamily: 'Cormorant Garamond, serif', lineHeight: {md: 2, lg: 3} }}>
+              <Typography variant="body1" sx={{ mb: 2, fontWeight: 'medium', fontFamily: 'Cormorant Garamond, serif', lineHeight: 2 }}>
                 Discover the world of flavors at our market, where our carefully curated selection of spices invites you
                 to elevate every dish you create. From the warmth of Ethiopian berbere to the earthy complexity of cumin,
                 our spices are sourced from around the globe, bringing authentic tastes to your kitchen. Whether you’re

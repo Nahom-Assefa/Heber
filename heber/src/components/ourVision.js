@@ -59,7 +59,7 @@ function OurVision() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1, textAlign: 'center' }}>
                 Our Vision
               </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 'medium', fontFamily: '"Poppins", "Comic Sans MS", "Cursive", sans-serif', lineHeight: 3 }}>
+              <Typography variant="body1" sx={{ fontWeight: 'medium', fontFamily: '"Poppins", "Georgia", "Serif", sans-serif', lineHeight: 2 }}>
                 At Heber Market & Cafe, we envision a world where cultural diversity is celebrated, and communities thrive in environments
                 filled with warmth, authenticity, and connection. We aspire to be a beacon of Ethiopian heritage, spreading the joy of tradition,
                 and fostering a sense of belonging wherever we go.
@@ -69,7 +69,7 @@ function OurVision() {
               <Typography variant="h5" sx={{ fontWeight: 500, mb: 1, textAlign: 'center' }}>
                 Our Mission
               </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 'medium', fontFamily: '"Poppins", "Comic Sans MS", "Cursive", sans-serif', lineHeight: 3 }}>
+              <Typography variant="body1" sx={{ fontWeight: 'medium', fontFamily: '"Poppins", "Georgia", "Serif", sans-serif', lineHeight: 2 }}>
                 Our mission at Heber Market & Cafe is to create a welcoming space where people from all walks of life can come together to experience
                 the richness of Ethiopian culture. Through our commitment to serving authentic cuisine and traditional coffee, we aim to provide
                 not just nourishment for the body, but also nourishment for the soul.

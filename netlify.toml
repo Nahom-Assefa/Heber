@@ -1,0 +1,4 @@
+[build]
+  base = "heber"
+  publish = "build"
+  command = "npm run build"

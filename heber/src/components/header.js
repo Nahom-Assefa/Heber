@@ -32,7 +32,7 @@ function Header(props) {
             headerComponentData.forEach(a_item => {
               switch (a_item.title) {
                 case "Home Page Banner Image":
-                  setBanner(urlFor(a_item.image).sharpen().url());
+                  setBanner(urlFor(a_item.image).sharpen().flipHorizontal().url());
                   break;
                 case "Afro Div Print":
                   setAfroPrint(urlFor(a_item.image).sharpen().url());
@@ -177,11 +177,11 @@ function Header(props) {
           </Box>
           {page === 'home' && (
             <Box sx={{ mt: {xs: 3, sm: 4, md: 4 }}}>
-              <Typography variant="h1" sx={{color: 'white', mt: {xs: 0, sm: 10, md: 0}, fontSize: {xs: '0.875em', sm: '2em', md: '2.5em', lg: '3em', xl: '3.5em'}}}>
-                <span style={{ fontWeight: 'normal' }}>Where</span> <span style={{ fontWeight: 'bold' }}>Community</span> <br />
-                <span style={{ fontWeight: 'normal' }}>Meets</span> <span style={{ fontWeight: 'bold' }}>Culture</span>
+              <Typography variant="h1" sx={{color: 'white', mt: {xs: 7, sm: 10, md: 0}, fontSize: {xs: '0.875em', sm: '2em', md: '2.5em', lg: '3em', xl: '3.5em'}}}>
+                <span style={{ fontWeight: 'Semi-bold' }}>Where</span> <span style={{ fontWeight: 'bold' }}>Community</span> <br />
+                <span style={{ fontWeight: 'Semi-bold' }}>Meets</span> <span style={{ fontWeight: 'bold' }}>Culture</span>
               </Typography>
-              <Typography variant="body1" sx={{color: 'white', fontSize: {xs: '.25em', sm: '.6em', md: '.8em', lg: '1em', xl: '1em'}, mb: {xs: 1, sm: 2},}}>
+              <Typography variant="body1" sx={{color: 'white', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)', fontWeight: 'Extra-bold', fontSize: {xs: '.25em', sm: '.6em', md: '.8em', lg: '1em', xl: '1em'}, mb: {xs: 1, sm: 2},}}>
                 Experience the vibrant fusion of Ethiopian heritage <br />
                 and modern convenience at Heber Market & Cafe.
               </Typography>
